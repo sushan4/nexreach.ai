@@ -54,7 +54,7 @@ import ThemeToggle from './ThemeToggle/theme-toggle';
 import { UserNav } from './user-nav';
 
 export const company = {
-  name: 'Acme Inc',
+  name: 'Mamaearth',
   logo: GalleryVerticalEnd,
   plan: 'Enterprise'
 };

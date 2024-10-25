@@ -36,8 +36,8 @@ export default async function EmployeeListingPage({}: TEmployeeListingPage) {
       <div className="space-y-4">
         <div className="flex items-start justify-between">
           <Heading
-            title={`Employee (${totalUsers})`}
-            description="Manage employees (Server side table functionalities.)"
+            title={`Users (${totalUsers})`}
+            description="Manage users (Server side table functionalities.)"
           />
 
           <Link

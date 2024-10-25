@@ -19,35 +19,35 @@ import {
   ChartTooltipContent
 } from '@/components/ui/chart';
 const chartData = [
-  { browser: 'chrome', visitors: 275, fill: 'var(--color-chrome)' },
-  { browser: 'safari', visitors: 200, fill: 'var(--color-safari)' },
-  { browser: 'firefox', visitors: 287, fill: 'var(--color-firefox)' },
-  { browser: 'edge', visitors: 173, fill: 'var(--color-edge)' },
-  { browser: 'other', visitors: 190, fill: 'var(--color-other)' }
+  { browser: 'direct sales', visitors: 275, fill: 'var(--color-direct)' },
+  { browser: 'retail sales', visitors: 200, fill: 'var(--color-retail)' },
+  { browser: 'wholesale sales', visitors: 287, fill: 'var(--color-wholesale)' },
+  { browser: 'B2B sales', visitors: 173, fill: 'var(--color-B2B)' },
+  { browser: 'social media sales', visitors: 190, fill: 'var(--color-social)' }
 ];
 
 const chartConfig = {
   visitors: {
     label: 'Visitors'
   },
-  chrome: {
-    label: 'Chrome',
+  direct: {
+    label: 'direct sales',
     color: 'hsl(var(--chart-1))'
   },
-  safari: {
-    label: 'Safari',
+  retail: {
+    label: 'retail sales',
     color: 'hsl(var(--chart-2))'
   },
-  firefox: {
-    label: 'Firefox',
+  wholesale: {
+    label: 'wholesale sales',
     color: 'hsl(var(--chart-3))'
   },
-  edge: {
-    label: 'Edge',
+  B2B: {
+    label: 'B2B sales',
     color: 'hsl(var(--chart-4))'
   },
-  other: {
-    label: 'Other',
+  social: {
+    label: 'social media sales',
     color: 'hsl(var(--chart-5))'
   }
 } satisfies ChartConfig;
@@ -60,7 +60,7 @@ export function PieGraph() {
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Pie Chart - Donut with Text</CardTitle>
+        <CardTitle>Reveue Breakup </CardTitle>
         <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">

@@ -18,21 +18,25 @@ import {
   ChartTooltipContent
 } from '@/components/ui/chart';
 const chartData = [
-  { month: 'January', desktop: 186, mobile: 80 },
-  { month: 'February', desktop: 305, mobile: 200 },
-  { month: 'March', desktop: 237, mobile: 120 },
-  { month: 'April', desktop: 73, mobile: 190 },
-  { month: 'May', desktop: 209, mobile: 130 },
-  { month: 'June', desktop: 214, mobile: 140 }
+  { month: 'January', Hair: 186, Face: 80 },
+  { month: 'February', Hair: 305, Face: 200 },
+  { month: 'March', Hair: 237, Face: 120 },
+  { month: 'April', Hair: 73, Face: 190 },
+  { month: 'May', Hair: 209, Face: 130 },
+  { month: 'June', Hair: 214, Face: 140 }
 ];
 
 const chartConfig = {
-  desktop: {
-    label: 'Desktop',
+  Hair: {
+    label: 'Hair',
     color: 'hsl(var(--chart-1))'
   },
-  mobile: {
-    label: 'Mobile',
+  Face: {
+    label: 'Face',
+    color: 'hsl(var(--chart-2))'
+  },
+  Combo: {
+    label: 'Combo',
     color: 'hsl(var(--chart-2))'
   }
 } satisfies ChartConfig;
@@ -41,9 +45,9 @@ export function AreaGraph() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Area Chart - Stacked</CardTitle>
+        <CardTitle>Product Sales by Month</CardTitle>
         <CardDescription>
-          Showing total visitors for the last 6 months
+          Showing total sales for the last 6 months
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -72,19 +76,19 @@ export function AreaGraph() {
               content={<ChartTooltipContent indicator="dot" />}
             />
             <Area
-              dataKey="mobile"
+              dataKey="Face"
               type="natural"
-              fill="var(--color-mobile)"
+              fill="var(--color-Face)"
               fillOpacity={0.4}
-              stroke="var(--color-mobile)"
+              stroke="var(--color-Face)"
               stackId="a"
             />
             <Area
-              dataKey="desktop"
+              dataKey="Hair"
               type="natural"
-              fill="var(--color-desktop)"
+              fill="var(--color-Hair)"
               fillOpacity={0.4}
-              stroke="var(--color-desktop)"
+              stroke="var(--color-Hair)"
               stackId="a"
             />
           </AreaChart>

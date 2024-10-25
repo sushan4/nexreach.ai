@@ -61,7 +61,7 @@ export default function EmployeeForm() {
     <Card className="mx-auto w-full">
       <CardHeader>
         <CardTitle className="text-left text-2xl font-bold">
-          Employee Information
+          User Information
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -97,7 +97,7 @@ export default function EmployeeForm() {
                         <SelectItem value="usa">USA</SelectItem>
                         <SelectItem value="uk">UK</SelectItem>
                         <SelectItem value="canada">Canada</SelectItem>
-                        <SelectItem value="australia">Australia</SelectItem>
+                        <SelectItem value="australia">India</SelectItem>
                         <SelectItem value="germany">Germany</SelectItem>
                         <SelectItem value="france">France</SelectItem>
                         <SelectItem value="japan">Japan</SelectItem>
