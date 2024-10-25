@@ -30,7 +30,7 @@ const analyzeSentiment = async (text) => {
         messages: [
           {
             role: 'user',
-            content: `Analyze the sentiment of this review on basis of India and provide a json output with numeric "positive score" between 1 to 10, and "sentiment description" which is a sentence based on review, and "popular region" which is set to Mumbai/Bangalore/Chennai Randomly ${text}`
+            content: `Analyze the sentiment of this review on basis of India and provide a json output with numeric "positive score" between 1 to 10, and "sentiment description" which is a sentence based on review, and "popular region" which is set to Mumbai/Bangalore/Chennai/Delhi Randomly ${text}`
           }
         ]
       },

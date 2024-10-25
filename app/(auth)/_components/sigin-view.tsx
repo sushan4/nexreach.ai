@@ -3,6 +3,7 @@ import Link from 'next/link';
 import UserAuthForm from './user-auth-form';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import HeroSectionLogin from '@/components/herosection';
 
 export const metadata: Metadata = {
   title: 'Authentication',
@@ -11,7 +12,10 @@ export const metadata: Metadata = {
 
 export default function SignInViewPage() {
   return (
-    <div className="relative h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+    <div
+      className="relative h-screen  flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-[70%_30%]
+ lg:px-0"
+    >
       <Link
         href="/examples/authentication"
         className={cn(
@@ -36,7 +40,10 @@ export default function SignInViewPage() {
           >
             <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
           </svg>
-          Logo
+          NexReach.AI
+        </div>
+        <div>
+          <HeroSectionLogin />
         </div>
         <div className="relative z-20 mt-auto">
           <blockquote className="space-y-2">
