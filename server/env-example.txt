@@ -1,3 +1,0 @@
-PORT=3001
-NODE_ENV=development
-OPENAI_API_KEY=Place your OpenAI here

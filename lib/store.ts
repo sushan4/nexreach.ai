@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { v4 as uuid } from 'uuid';
 import { persist } from 'zustand/middleware';
 import { UniqueIdentifier } from '@dnd-kit/core';
-import { Column } from '@/app/dashboard/kanban/_components/board-column';
+import { Column } from '@/app/dashboard/AI Analyze/_components/board-column';
 
 export type Status = 'TODO' | 'IN_PROGRESS' | 'DONE';
 

@@ -121,7 +121,7 @@ export type Product = {
   updated_at: string;
 };
 
-export const navItems: NavItem[] = [
+export const navItems = [
   {
     title: 'Dashboard',
     url: '/dashboard/overview',
@@ -144,6 +144,13 @@ export const navItems: NavItem[] = [
     items: [] // No child items
   },
   {
+    title: 'AI Analyze',
+    url: '/dashboard/aianalyze',
+    icon: 'kanban',
+    isActive: false,
+    items: [] // No child items
+  },
+  {
     title: 'Account',
     url: '#', // Placeholder as there is no direct link for the parent
     icon: 'billing',
@@ -161,12 +168,5 @@ export const navItems: NavItem[] = [
         icon: 'login'
       }
     ]
-  },
-  {
-    title: 'Kanban',
-    url: '/dashboard/kanban',
-    icon: 'kanban',
-    isActive: false,
-    items: [] // No child items
   }
 ];
