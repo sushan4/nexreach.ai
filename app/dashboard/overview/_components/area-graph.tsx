@@ -28,11 +28,11 @@ const chartData = [
 
 const chartConfig = {
   Hair: {
-    label: 'Hair',
+    label: 'Hair Products',
     color: 'hsl(var(--chart-1))'
   },
   Face: {
-    label: 'Face',
+    label: 'Face Products',
     color: 'hsl(var(--chart-2))'
   },
   Combo: {

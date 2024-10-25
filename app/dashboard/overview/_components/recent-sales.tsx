@@ -48,7 +48,7 @@ export function RecentSales() {
           <AvatarFallback>AR</AvatarFallback>
         </Avatar>
         <div className="ml-4 space-y-1">
-          <p className="text-sm font-medium leading-none">Aditya Chutiya</p>
+          <p className="text-sm font-medium leading-none">Aditya Rajauria 👑</p>
           <p className="text-sm text-muted-foreground">
             aditya.rajauria@gmail.com
           </p>
