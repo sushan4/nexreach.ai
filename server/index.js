@@ -4,6 +4,7 @@ const fs = require('fs');
 const csv = require('csv-parser');
 const axios = require('axios');
 const cors = require('cors');
+const openai = require('openai');
 require('dotenv').config();
 
 const app = express();
@@ -92,6 +93,91 @@ app.get('/api/sentiment/:productName', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error.' });
+  }
+});
+
+// Load influencers from CSV file
+const loadInfluencers = () => {
+  return new Promise((resolve, reject) => {
+    const influencers = [];
+    fs.createReadStream('influencers.csv') // replace with the path to your CSV file
+      .pipe(csv())
+      .on('data', (row) => influencers.push(row))
+      .on('end', () => resolve(influencers))
+      .on('error', (error) => reject(error));
+  });
+};
+
+// Define route to get influencers by region
+app.get('/influencers', async (req, res) => {
+  const region = req.query.region;
+  if (!region) {
+    return res.status(400).json({ error: 'Region is required' });
+  }
+
+  try {
+    // Load the influencers data
+    const influencers = await loadInfluencers();
+
+    // Filter influencers by region
+    const filteredInfluencers = influencers.filter((influencer) =>
+      influencer.Region.toLowerCase().includes(region.toLowerCase())
+    );
+
+    // Generate descriptions for each influencer using OpenAI API
+    const influencerDescriptions = await Promise.all(
+      filteredInfluencers.map(async (influencer) => {
+        const prompt = `Suggest why ${influencer.Name}, a popular ${influencer.Category} influencer with ${influencer.Reach} reach in ${influencer.Region}, would be good for a skincare project.`;
+
+        try {
+          const response = await axios.post(
+            'https://api.openai.com/v1/chat/completions',
+            {
+              model: 'gpt-3.5-turbo',
+              messages: [
+                {
+                  role: 'user',
+                  content: prompt
+                }
+              ],
+              max_tokens: 50,
+              temperature: 0.7
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+                'Content-Type': 'application/json'
+              }
+            }
+          );
+
+          const description = response.data.choices[0].message.content.trim();
+
+          return {
+            Name: influencer.Name,
+            Region: influencer.Region,
+            Reach: influencer.Reach,
+            Category: influencer.Category,
+            Description: description
+          };
+        } catch (error) {
+          console.error('OpenAI API error:', error);
+          return {
+            Name: influencer.Name,
+            Region: influencer.Region,
+            Reach: influencer.Reach,
+            Category: influencer.Category,
+            Description: 'Description unavailable due to API error.',
+            Error: error.response?.data?.error?.message || error.message
+          };
+        }
+      })
+    );
+
+    res.json(influencerDescriptions);
+  } catch (error) {
+    console.error('Error loading influencers:', error);
+    res.status(500).json({ error: 'Failed to load influencers' });
   }
 });
 
