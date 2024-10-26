@@ -1,14 +1,7 @@
 'use client';
-
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  CardFooter
-} from '@/components/ui/card';
 import {
   LineChart,
   Line,
@@ -17,7 +10,6 @@ import {
   Tooltip,
   ResponsiveContainer
 } from 'recharts';
-import { number } from 'zod';
 
 type ProductCardProps = {
   name: string;
@@ -45,7 +37,7 @@ type SentimentData = {
 
 type ApiResponse = {
   product: ProductResponse;
-  sentiment: string | SentimentData; // Can be string or parsed object
+  sentiment: string | SentimentData;
 };
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -80,13 +72,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
     try {
       const encodedName = encodeURIComponent(name.trim());
-      console.log('Fetching analysis for:', encodedName);
-
       const response = await fetch(
         `http://localhost:3001/api/sentiment/${encodedName}`
       );
       const data: ApiResponse = await response.json();
-      console.log(data);
 
       if (!response.ok) {
         throw new Error(
@@ -94,7 +83,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
         );
       }
 
-      // Parse the sentiment and set the result
       setAnalysisResult({
         product: data.product,
         sentiment: parseSentiment(data)
@@ -178,56 +166,51 @@ const ProductCard: React.FC<ProductCardProps> = ({
   };
 
   return (
-    <Card className="w-[300px] rounded-lg bg-gray-800 text-white">
-      <CardHeader className="p-0">
-        <Image
-          src={image}
-          alt={name}
-          width={100}
-          style={{ width: '100%' }}
-          height={100}
-          className="rounded-t-lg"
-        />
-      </CardHeader>
-      <CardContent className="p-4">
-        <h2 className="text-lg font-semibold">{name}</h2>
+    <div className="w-[300px] rounded-lg bg-gray-800 text-white shadow-lg">
+      <Image
+        src={image}
+        alt={name}
+        width={300}
+        height={200}
+        className="h-[200px] w-full rounded-t-lg object-cover"
+      />
+
+      <div className="p-4">
+        <h2 className="h-16 text-lg font-semibold">{name}</h2>
         <p className="text-sm text-gray-400">{category}</p>
-        <div className="flex items-center justify-center">
+
+        {expanded && (
+          <div className="mt-4">
+            {loading && <p className="text-center">Loading analysis...</p>}
+            {error && (
+              <div className="rounded-lg bg-red-900/50 p-4 text-red-200">
+                <p>Error: {error}</p>
+              </div>
+            )}
+            {!loading && !error && renderAnalysis()}
+          </div>
+        )}
+
+        <div className="mt-7 flex flex-col gap-2">
           <button
             onClick={handleAnalyzeClick}
             disabled={loading}
-            className="hover:bg-primary-dark mt-7 rounded-lg bg-primary px-4 py-2 text-white disabled:opacity-50"
+            className="w-full rounded-lg bg-slate-600 px-4 py-2 text-white hover:bg-slate-700 disabled:opacity-50"
           >
             {loading ? 'Analyzing...' : 'Analyze'}
           </button>
-          <CardFooter className="p-4">
-            <Link
-              href={link}
-              className="mt-6 text-blue-400 hover:text-blue-300"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Get Top Influencer
-            </Link>
-          </CardFooter>
+          <Link
+            href={link}
+            className="text-center text-white hover:text-blue-300"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <hr className="my-4 h-px border-0 bg-gray-200 dark:bg-gray-700" />
+            Get Top Influencer
+          </Link>
         </div>
-      </CardContent>
-      {expanded && (
-        <CardContent className="mt-4 p-4">
-          {loading && (
-            <div className="text-center">
-              <p>Loading analysis...</p>
-            </div>
-          )}
-          {error && (
-            <div className="rounded-lg bg-red-900/50 p-4 text-red-200">
-              <p>Error: {error}</p>
-            </div>
-          )}
-          {!loading && !error && renderAnalysis()}
-        </CardContent>
-      )}
-    </Card>
+      </div>
+    </div>
   );
 };
 
