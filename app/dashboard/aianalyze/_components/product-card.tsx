@@ -17,6 +17,7 @@ import {
   Tooltip,
   ResponsiveContainer
 } from 'recharts';
+import { number } from 'zod';
 
 type ProductCardProps = {
   name: string;
@@ -37,7 +38,7 @@ type ProductResponse = {
 };
 
 type SentimentData = {
-  'positive score': number;
+  'sentiment score': number;
   'sentiment description': string;
   'popular region': string;
 };
@@ -85,6 +86,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         `http://localhost:3001/api/sentiment/${encodedName}`
       );
       const data: ApiResponse = await response.json();
+      console.log(data);
 
       if (!response.ok) {
         throw new Error(
@@ -110,7 +112,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
     const { product, sentiment } = analysisResult;
     const ratingData = [
-      { name: 'Product Rating', value: parseFloat(product.rating) }
+      {
+        name: 'sentinal score',
+        value: parseFloat(sentiment['sentiment score'].toString())
+      }
     ];
 
     return (
@@ -127,11 +132,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
               {sentiment['popular region']}
             </p>
             <p className="text-sm">
-              <span className="font-medium">Positive Score:</span>{' '}
-              {sentiment['positive score']}/10
-            </p>
-            <p className="text-sm">
-              <span className="font-medium">Rating:</span> {product.rating}/5
+              <span className="font-medium">Sentiment Score:</span>{' '}
+              {sentiment['sentiment score']}/10
             </p>
           </div>
         </div>

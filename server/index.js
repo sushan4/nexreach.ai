@@ -37,7 +37,8 @@ const analyzeSentiment = async (text) => {
         messages: [
           {
             role: 'user',
-            content: `Analyze the sentiment of this review on basis of India and provide a json output with numeric "positive score" between 1 to 10, and "sentiment description" which is a sentence based on review, and "popular region" which is set to Mumbai/Bangalore/Chennai/Delhi Randomly ${text}`
+            // content: `Analyze the sentiment of this review and provide a json output with numeric value which shows a score based on previous sentiment analysis label it "sentiment score" between 1 to 10 in json, and "sentiment description" which is a sentence summerizing review, and "popular region" which you can randomly pick from this cities Mumbai,Bangalore, Chennai, Delhi. Randomly ${text}`
+            content: `Analyze the sentiment of the following review, assign a sentiment score between 1 (negative) to 10 (positive), and provide a summarized sentiment description. Randomly assign a popular region from the following cities: Mumbai, Bangalore, Chennai, or Delhi. Please format the response as JSON:\n\nReview: \"${text}\"\n\nExpected Output Format:\n{\n  \"sentiment score\": [numeric score between 1 and 10],\n  \"sentiment description\": \"[summarized sentiment in one sentence]\",\n  \"popular region\": \"[one of the cities: Mumbai, Bangalore, Chennai, Delhi]\"\n}\n`
           }
         ]
       },
