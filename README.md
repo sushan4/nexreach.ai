@@ -1,56 +1,53 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/9113740/201498864-2a900c64-d88f-4ed4-b5cf-770bcb57e1f5.png">
-  <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/9113740/201498152-b171abb8-9225-487a-821c-6ff49ee48579.png">
-</picture>
+# NexReach.ai
 
-<div align="center"><strong>Next.js 14 Admin Dashboard Starter Template With Shadcn-ui</strong></div>
-<div align="center">Built with the Next.js App Router</div>
-<br />
-<div align="center">
-<a href="https://next-shadcn-dashboard-starter.vercel.app">View Demo</a>
-<span>
-</div>
+NexReach.ai is an AI-powered marketing platform designed to help brands connect with the right influencers who align with their values and resonate with their target audiences. By leveraging cutting-edge AI, NexReach.ai analyzes online reviews, identifies top influencers, and provides region-specific matches to improve campaign targeting, boost ROI, and build genuine partnerships.
 
-## Overview
+## 🚀 Problem Statement
 
-This is a starter template using the following stack:
+Brands face challenges in finding influencers who genuinely reflect their values and appeal to their target audiences. Current tools in the market often lack the capability to provide recommendations based on authentic consumer sentiment and regional appeal, making influencer campaigns less effective and harder to manage.
 
-- Framework - [Next.js 14](https://nextjs.org/13)
-- Language - [TypeScript](https://www.typescriptlang.org)
-- Styling - [Tailwind CSS](https://tailwindcss.com)
-- Components - [Shadcn-ui](https://ui.shadcn.com)
-- Schema Validations - [Zod](https://zod.dev)
-- State Management - [Zustand](https://zustand-demo.pmnd.rs)
-- Search params state manager - [Nuqs](https://nuqs.47ng.com/)
-- Auth - [Auth.js](https://authjs.dev/)
-- Tables - [Tanstack Tables](https://ui.shadcn.com/docs/components/data-table)
-- Forms - [React Hook Form](https://ui.shadcn.com/docs/components/form)
-- Linting - [ESLint](https://eslint.org)
-- Pre-commit Hooks - [Husky](https://typicode.github.io/husky/)
-- Formatting - [Prettier](https://prettier.io)
+### Our Solution
 
-_If you are looking for a React admin dashboard starter, here is the [repo](https://github.com/Kiranism/react-shadcn-dashboard-starter)._
+NexReach.ai offers an innovative approach to influencer marketing:
 
-## Pages
+- **Sentiment-Driven Insights:** Using AI, our platform analyzes online reviews and social media conversations to deliver authentic sentiment scores and trends for each product. This allows brands to make informed decisions based on genuine consumer opinions.
+- **Region-Specific Influencer Recommendations:** We identify top influencers per product, factoring in audience match, reach, and sentiment alignment. Our region-specific approach ensures that campaigns resonate better with local audiences.
+- **Impact Tracking:** Track the effectiveness of influencer campaigns with metrics that correlate influencer engagement to sentiment shifts and sales performance.
 
-| Pages                                                                                   | Specifications                                                                                                                      |
-| :-------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------- |
-| [Signup](https://next-shadcn-dashboard-starter.vercel.app/)                             | Authentication with **NextAuth** supports Social logins and email logins (Enter dummy email for demo).                              |
-| [Dashboard](https://next-shadcn-dashboard-starter.vercel.app/dashboard)                 | Cards with recharts graphs for analytics.                                                                                           |
-| [Employee](https://next-shadcn-dashboard-starter.vercel.app/dashboard/employee)         | Tanstack tables with server side searching, filter, pagination by Nuqs which is a Type-safe search params state manager in nextjs). |
-| [Employee/new](https://next-shadcn-dashboard-starter.vercel.app/dashboard/employee/new) | A Employee Form with shadcn form (react-hook-form + zod).                                                                           |
-| [Product](https://next-shadcn-dashboard-starter.vercel.app/dashboard/product)           | Tanstack tables with server side searching, filter, pagination by Nuqs which is a Type-safe search params state manager in nextjs   |
-| [Product/new](https://next-shadcn-dashboard-starter.vercel.app/dashboard/product/new)   | A Product Form with shadcn form (react-hook-form + zod).                                                                            |
-| [Profile](https://next-shadcn-dashboard-starter.vercel.app/dashboard/profile)           | Mutistep dynamic forms using react-hook-form and zod for form validation.                                                           |
-| [Kanban Board](https://next-shadcn-dashboard-starter.vercel.app/dashboard/kanban)       | A Drag n Drop task management board with dnd-kit and zustand to persist state locally.                                              |
-| [Not Found](https://next-shadcn-dashboard-starter.vercel.app/dashboard/notfound)        | Not Found Page Added in the root level                                                                                              |
-| -                                                                                       | -                                                                                                                                   |
+## 🌟 Key Features
+
+### 1. Real-Time Sentiment Analysis
+
+- AI-driven sentiment scores and trends for each product.
+- Key customer insights extracted from online reviews and social media conversations.
+
+### 2. Influencer Recommendations
+
+- Suggests top influencers for each product based on audience match, reach, and sentiment alignment.
+- Region-specific recommendations to enhance targeting and ensure cultural relevance.
+
+### 3. Impact Tracking
+
+- Analyze the correlation between influencer campaigns and sentiment shifts.
+- Measure post-campaign engagement and sales impact, providing a clear view of ROI.
+
+## 📚 Technologies Used
+
+- **Backend:** [Express, OpenAI]
+- **Frontend:** [Next.js, Tailwind CSS]
+- **Database:** [ MongoDB ]
+
+## 📈 Benefits
+
+- **Enhanced Targeting:** Reach the right audiences by connecting with influencers who genuinely resonate with your product.
+- **Improved ROI:** Better campaign targeting and efficient influencer selection lead to higher returns on marketing spend.
+- **Genuine Partnerships:** Build meaningful collaborations with influencers who share your brand values.
 
 ## Getting Started
 
 Follow these steps to clone the repository and start the development server:
 
-- `git clone https://github.com/Kiranism/next-shadcn-dashboard-starter.git`
+- `git clone https://github.com/sushan4/nexreach.ai`
 - `npm install`
 - Create a `.env.local` file by copying the example environment file:
   `cp env.example.txt .env.local`
