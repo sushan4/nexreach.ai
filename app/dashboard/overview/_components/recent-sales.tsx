@@ -22,7 +22,7 @@ export function RecentSales() {
           <AvatarFallback>SU</AvatarFallback>
         </Avatar>
         <div className="ml-4 space-y-1">
-          <p className="text-sm font-medium leading-none">Suhan Uchil</p>
+          <p className="text-sm font-medium leading-none">Sushan Uchil</p>
           <p className="text-sm text-muted-foreground">
             sushan.uchil@email.com
           </p>

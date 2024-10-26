@@ -48,31 +48,35 @@ export const fakeUsers = {
         'Product Manager'
       ];
       const cities = [
-        'San Francisco',
-        'New York City',
-        'Los Angeles',
-        'Chicago',
-        'Houston',
-        'Phoenix',
-        'Philadelphia',
-        'San Antonio',
-        'San Diego',
-        'Dallas',
-        'San Jose',
-        'Austin',
-        'Jacksonville'
+        'Mumbai',
+        'Delhi',
+        'Bengaluru',
+        'Hyderabad',
+        'Ahmedabad',
+        'Chennai',
+        'Kolkata',
+        'Pune',
+        'Jaipur',
+        'Surat',
+        'Lucknow',
+        'Kanpur',
+        'Nagpur'
       ];
+
       const states = [
-        'California',
-        'New York',
-        'Texas',
-        'Florida',
-        'Illinois',
-        'Pennsylvania',
-        'Ohio',
-        'Georgia',
-        'North Carolina',
-        'Michigan'
+        'Maharashtra',
+        'Karnataka',
+        'Tamil Nadu',
+        'Telangana',
+        'Gujarat',
+        'Rajasthan',
+        'Uttar Pradesh',
+        'West Bengal',
+        'Madhya Pradesh',
+        'Punjab',
+        'Bihar',
+        'Odisha',
+        'Kerala'
       ];
 
       return {
