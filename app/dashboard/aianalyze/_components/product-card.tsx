@@ -178,26 +178,39 @@ const ProductCard: React.FC<ProductCardProps> = ({
   };
 
   return (
-    <Card className="rounded-lg bg-gray-800 text-white shadow-md transition-shadow duration-200 hover:shadow-lg">
+    <Card className="w-[300px] rounded-lg bg-gray-800 text-white">
       <CardHeader className="p-0">
         <Image
           src={image}
           alt={name}
-          width={300}
-          height={200}
+          width={100}
+          style={{ width: '100%' }}
+          height={100}
           className="rounded-t-lg"
         />
       </CardHeader>
       <CardContent className="p-4">
         <h2 className="text-lg font-semibold">{name}</h2>
         <p className="text-sm text-gray-400">{category}</p>
-        <button
-          onClick={handleAnalyzeClick}
-          disabled={loading}
-          className="hover:bg-primary-dark mt-4 rounded-lg bg-primary px-4 py-2 text-white disabled:opacity-50"
-        >
-          {loading ? 'Analyzing...' : 'Analyze'}
-        </button>
+        <div className="flex items-center justify-center">
+          <button
+            onClick={handleAnalyzeClick}
+            disabled={loading}
+            className="hover:bg-primary-dark mt-7 rounded-lg bg-primary px-4 py-2 text-white disabled:opacity-50"
+          >
+            {loading ? 'Analyzing...' : 'Analyze'}
+          </button>
+          <CardFooter className="p-4">
+            <Link
+              href={link}
+              className="mt-6 text-blue-400 hover:text-blue-300"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Get Top Influencer
+            </Link>
+          </CardFooter>
+        </div>
       </CardContent>
       {expanded && (
         <CardContent className="mt-4 p-4">
@@ -214,16 +227,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
           {!loading && !error && renderAnalysis()}
         </CardContent>
       )}
-      <CardFooter className="p-4">
-        <Link
-          href={link}
-          className="text-blue-400 hover:text-blue-300"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          View Product
-        </Link>
-      </CardFooter>
     </Card>
   );
 };

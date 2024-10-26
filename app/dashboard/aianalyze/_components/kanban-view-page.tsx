@@ -86,7 +86,7 @@ export default function KanbanViewPage() {
           <Heading title={`AI Analyze`} description="See product score" />
           <NewTaskDialog />
         </div>
-        <div className="grid grid-cols-3 space-x-8 space-y-8 p-12">
+        <div className="grid grid-cols-1 gap-6 p-20 md:grid-cols-4">
           {cardData1.map((data) => (
             <ProductCard
               key={data.name}
