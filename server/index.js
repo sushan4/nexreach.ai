@@ -3,10 +3,17 @@ const express = require('express');
 const fs = require('fs');
 const csv = require('csv-parser');
 const axios = require('axios');
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+app.use(
+  cors({
+    origin: 'http://localhost:3000'
+  })
+);
 
 // Load products from CSV
 const loadProducts = () => {
@@ -50,7 +57,8 @@ const analyzeSentiment = async (text) => {
 
 // Endpoint for sentiment analysis
 app.get('/api/sentiment/:productName', async (req, res) => {
-  const { productName } = req.params;
+  console.log(req.params.productName);
+  const productName = decodeURIComponent(req.params.productName);
 
   try {
     const products = await loadProducts();

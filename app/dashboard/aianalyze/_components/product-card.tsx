@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import axios from 'axios';
 import {
   Card,
   CardHeader,
@@ -26,6 +25,28 @@ type ProductCardProps = {
   image: string;
 };
 
+type ProductResponse = {
+  name: string;
+  link: string;
+  rating: string;
+  reviews: string;
+  mrp: string;
+  discount: string;
+  keyIngredients: string;
+  category: string;
+};
+
+type SentimentData = {
+  'positive score': number;
+  'sentiment description': string;
+  'popular region': string;
+};
+
+type ApiResponse = {
+  product: ProductResponse;
+  sentiment: string | SentimentData; // Can be string or parsed object
+};
+
 const ProductCard: React.FC<ProductCardProps> = ({
   name,
   link,
@@ -34,28 +55,124 @@ const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   const [expanded, setExpanded] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [analysisResult, setAnalysisResult] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [analysisResult, setAnalysisResult] = useState<{
+    product: ProductResponse;
+    sentiment: SentimentData;
+  } | null>(null);
+
+  const parseSentiment = (data: ApiResponse): SentimentData => {
+    if (typeof data.sentiment === 'string') {
+      try {
+        return JSON.parse(data.sentiment);
+      } catch (e) {
+        throw new Error('Failed to parse sentiment data');
+      }
+    }
+    return data.sentiment;
+  };
 
   const handleAnalyzeClick = async () => {
     setExpanded(true);
     setLoading(true);
+    setError(null);
 
     try {
-      console.log(name);
-      const response = await fetch('http://localhost:3001/api/sentiment', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ productName: name })
+      const encodedName = encodeURIComponent(name.trim());
+      console.log('Fetching analysis for:', encodedName);
+
+      const response = await fetch(
+        `http://localhost:3001/api/sentiment/${encodedName}`
+      );
+      const data: ApiResponse = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.sentiment?.toString() || 'Failed to fetch analysis'
+        );
+      }
+
+      // Parse the sentiment and set the result
+      setAnalysisResult({
+        product: data.product,
+        sentiment: parseSentiment(data)
       });
-      console.log(response.data);
-      setAnalysisResult(response.data);
     } catch (error) {
-      console.error('Error fetching sentiment analysis:', error);
+      console.error('Error:', error);
+      setError(error instanceof Error ? error.message : 'An error occurred');
     } finally {
       setLoading(false);
     }
+  };
+
+  const renderAnalysis = () => {
+    if (!analysisResult) return null;
+
+    const { product, sentiment } = analysisResult;
+    const ratingData = [
+      { name: 'Product Rating', value: parseFloat(product.rating) }
+    ];
+
+    return (
+      <div className="space-y-4">
+        <div className="rounded-lg bg-gray-700 p-4">
+          <h3 className="mb-2 font-semibold">Analysis Results</h3>
+          <div className="space-y-2">
+            <p className="text-sm">
+              <span className="font-medium">Sentiment:</span>{' '}
+              {sentiment['sentiment description']}
+            </p>
+            <p className="text-sm">
+              <span className="font-medium">Popular Region:</span>{' '}
+              {sentiment['popular region']}
+            </p>
+            <p className="text-sm">
+              <span className="font-medium">Positive Score:</span>{' '}
+              {sentiment['positive score']}/10
+            </p>
+            <p className="text-sm">
+              <span className="font-medium">Rating:</span> {product.rating}/5
+            </p>
+          </div>
+        </div>
+
+        <div className="h-32 w-full">
+          <ResponsiveContainer>
+            <LineChart data={ratingData}>
+              <XAxis dataKey="name" />
+              <YAxis domain={[0, 5]} />
+              <Tooltip />
+              <Line
+                type="monotone"
+                dataKey="value"
+                stroke="#8884d8"
+                strokeWidth={2}
+                dot={{ fill: '#8884d8' }}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+
+        <div className="rounded-lg bg-gray-700 p-4">
+          <h3 className="mb-2 font-semibold">Product Details</h3>
+          <div className="space-y-2 text-sm">
+            <p>
+              <span className="font-medium">MRP:</span> {product.mrp}
+            </p>
+            {product.discount !== 'NA' && (
+              <p>
+                <span className="font-medium">Discount:</span>{' '}
+                {product.discount}
+              </p>
+            )}
+            <p>
+              <span className="font-medium">Key Ingredients:</span>{' '}
+              {product.keyIngredients}
+            </p>
+          </div>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -74,45 +191,34 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <p className="text-sm text-gray-400">{category}</p>
         <button
           onClick={handleAnalyzeClick}
-          className="hover:bg-primary-dark mt-4 rounded-lg bg-primary px-4 py-2 text-white"
+          disabled={loading}
+          className="hover:bg-primary-dark mt-4 rounded-lg bg-primary px-4 py-2 text-white disabled:opacity-50"
         >
-          Analyze
+          {loading ? 'Analyzing...' : 'Analyze'}
         </button>
       </CardContent>
       {expanded && (
-        <CardContent className="mt-4 rounded-lg bg-gray-700 p-4">
-          {loading ? (
-            <p>Loading analysis...</p>
-          ) : (
-            analysisResult && (
-              <div>
-                <p>
-                  <strong>Sentiment:</strong>{' '}
-                  {analysisResult.sentiment.description}
-                </p>
-                <p>
-                  <strong>Popular Region:</strong>{' '}
-                  {analysisResult.sentiment.popular_region}
-                </p>
-                <ResponsiveContainer width="100%" height={100}>
-                  <LineChart
-                    data={[
-                      { rating: parseFloat(analysisResult.product.rating) }
-                    ]}
-                  >
-                    <XAxis dataKey="rating" />
-                    <YAxis />
-                    <Tooltip />
-                    <Line type="monotone" dataKey="rating" stroke="#8884d8" />
-                  </LineChart>
-                </ResponsiveContainer>
-              </div>
-            )
+        <CardContent className="mt-4 p-4">
+          {loading && (
+            <div className="text-center">
+              <p>Loading analysis...</p>
+            </div>
           )}
+          {error && (
+            <div className="rounded-lg bg-red-900/50 p-4 text-red-200">
+              <p>Error: {error}</p>
+            </div>
+          )}
+          {!loading && !error && renderAnalysis()}
         </CardContent>
       )}
       <CardFooter className="p-4">
-        <Link href={link} passHref>
+        <Link
+          href={link}
+          className="text-blue-400 hover:text-blue-300"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           View Product
         </Link>
       </CardFooter>

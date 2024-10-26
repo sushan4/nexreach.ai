@@ -13,7 +13,7 @@ export default function KanbanViewPage() {
 
   const cardData1: cardData[] = [
     {
-      name: 'Essential Anti-Hair Fall Kit',
+      name: 'Essential AntiHair Fall Kit',
       link: 'https://mamaearth.in/product/essential-anti-hair-fall-kit',
       category: 'Hair Kit',
       image:
@@ -86,7 +86,7 @@ export default function KanbanViewPage() {
           <Heading title={`AI Analyze`} description="See product score" />
           <NewTaskDialog />
         </div>
-        <div>
+        <div className="grid grid-cols-3 space-x-8 space-y-8 p-12">
           {cardData1.map((data) => (
             <ProductCard
               key={data.name}
