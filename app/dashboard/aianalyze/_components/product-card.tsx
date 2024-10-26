@@ -10,6 +10,7 @@ import {
   Tooltip,
   ResponsiveContainer
 } from 'recharts';
+import InfluencersPage from '../../influencer/page';
 
 type ProductCardProps = {
   name: string;
@@ -200,7 +201,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             {loading ? 'Analyzing...' : 'Analyze'}
           </button>
           <Link
-            href={link}
+            href={`influencer`}
             className="text-center text-white hover:text-blue-300"
             target="_blank"
             rel="noopener noreferrer"

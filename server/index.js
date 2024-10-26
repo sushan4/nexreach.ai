@@ -112,8 +112,8 @@ const loadInfluencers = () => {
 };
 
 // Define route to get influencers by region
-app.get('/influencers', async (req, res) => {
-  const region = req.query.region;
+app.get('/influencers/:region', async (req, res) => {
+  const region = req.params;
   if (!region) {
     return res.status(400).json({ error: 'Region is required' });
   }

@@ -33,9 +33,7 @@ export default function InfluencersPage({ region }: PageProps) {
         setIsLoading(true);
         // Encode the region parameter to handle special characters
         const encodedRegion = encodeURIComponent(region);
-        const response = await fetch(
-          `/api/influencers?region=${encodedRegion}`
-        );
+        const response = await fetch(`/api/influencers/`);
 
         if (!response.ok) {
           const errorData = await response.json();
