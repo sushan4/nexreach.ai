@@ -103,7 +103,10 @@ const loadInfluencers = () => {
     fs.createReadStream('influencers.csv') // replace with the path to your CSV file
       .pipe(csv())
       .on('data', (row) => influencers.push(row))
-      .on('end', () => resolve(influencers))
+      .on('end', () => {
+        // console.log(influencers)
+        resolve(influencers);
+      })
       .on('error', (error) => reject(error));
   });
 };
@@ -118,16 +121,19 @@ app.get('/influencers', async (req, res) => {
   try {
     // Load the influencers data
     const influencers = await loadInfluencers();
+    // console.log(influencers)
 
     // Filter influencers by region
     const filteredInfluencers = influencers.filter((influencer) =>
       influencer.Region.toLowerCase().includes(region.toLowerCase())
     );
+    // JSON.stringify(filteredInfluencers)
+    console.log(filteredInfluencers);
 
     // Generate descriptions for each influencer using OpenAI API
     const influencerDescriptions = await Promise.all(
       filteredInfluencers.map(async (influencer) => {
-        const prompt = `Suggest why ${influencer.Name}, a popular ${influencer.Category} influencer with ${influencer.Reach} reach in ${influencer.Region}, would be good for a skincare project.`;
+        const prompt = `Suggest why ${influencer.Name}, a popular ${influencer.Category} influencer with ${influencer.Reach} reach in ${influencer.Region}, would be good for a skincare project. Don't do indexing like 1.`;
 
         try {
           const response = await axios.post(

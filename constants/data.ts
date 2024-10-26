@@ -151,6 +151,13 @@ export const navItems = [
     items: [] // No child items
   },
   {
+    title: 'Influencer',
+    url: '/dashboard/influencer',
+    icon: 'laptop',
+    isActive: false,
+    items: [] // No child items
+  },
+  {
     title: 'Account',
     url: '#', // Placeholder as there is no direct link for the parent
     icon: 'billing',
