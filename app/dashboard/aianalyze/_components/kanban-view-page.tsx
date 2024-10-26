@@ -34,21 +34,21 @@ export default function KanbanViewPage() {
         'https://images.mamaearth.in/catalog/product/v/i/vitamin_c_foaming_face_wash_1.jpeg?format=auto&height=600'
     },
     {
-      name: 'Ubtan Face Scrub with Turmeric & Walnut for Tan Removal',
+      name: 'Ubtan Face Scrub with Turmeric & Walnut for Tan Removal ',
       link: 'https://mamaearth.in/product/ubtan-scrub-for-face-with-turmeric-walnut-for-tan-removal-100g',
       category: 'Face Wash',
       image:
         'https://images.mamaearth.in/catalog/product/u/b/ubtan_face_scrub_1.jpg?format=auto&height=600'
     },
     {
-      name: 'Aloe Vera Gel with Pure Aloe Vera & Vitamin E for Skin and Hair',
+      name: 'Aloe Vera Gel with Pure Aloe Vera & Vitamin E for Skin and Hair ',
       link: 'https://mamaearth.in/product/aloe-vera-gel-with-pure-aloe-vera-vitamin-e-for-skin-and-hair-300-ml-pack-of-2',
       category: 'Body Kit',
       image:
         'https://images.mamaearth.in/catalog/product/a/l/aloe-vera-gel---pack-of-2_white_bg.jpg?format=auto&height=600'
     },
     {
-      name: 'Vitamin C Face Mask With Vitamin C & Kaolin Clay for Skin Illumination',
+      name: 'Vitamin C Face Mask With Vitamin C & Kaolin Clay for Skin Illumination ',
       link: 'https://mamaearth.in/product/vitamin-c-face-mask-with-vitamin-c-kaolin-clay-for-skin-illumination-100-g',
       category: 'Face Mask',
       image:
