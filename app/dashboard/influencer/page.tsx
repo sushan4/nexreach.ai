@@ -22,7 +22,7 @@ interface PageProps {
   region: string;
 }
 
-export default function InfluencersPage({ region }: PageProps) {
+export default function InfluencersPage() {
   const [influencers, setInfluencers] = useState<Influencer[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -31,9 +31,11 @@ export default function InfluencersPage({ region }: PageProps) {
     const fetchData = async () => {
       try {
         setIsLoading(true);
+        const region = 'Mumbai';
         // Encode the region parameter to handle special characters
-        const encodedRegion = encodeURIComponent(region);
-        const response = await fetch(`/api/influencers/`);
+        const response = await fetch(
+          `http://localhost:3001/influencers/${region}`
+        );
 
         if (!response.ok) {
           const errorData = await response.json();
@@ -49,23 +51,21 @@ export default function InfluencersPage({ region }: PageProps) {
       }
     };
 
-    if (region) {
-      fetchData();
-    }
-  }, [region]); // Dependency on region prop
+    fetchData();
+  }, []); // Dependency on region prop
 
-  if (!region) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <p className="text-lg">Please specify a region</p>
-      </div>
-    );
-  }
+  //   if (!region) {
+  //     return (
+  //       <div className="flex min-h-screen items-center justify-center">
+  //         <p className="text-lg">Please specify a region</p>
+  //       </div>
+  //     );
+  //   }
 
   if (isLoading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <p className="text-lg">Loading influencers for {region}...</p>
+        <p className="text-lg">Loading influencers...</p>
       </div>
     );
   }
@@ -79,16 +79,16 @@ export default function InfluencersPage({ region }: PageProps) {
   }
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto py-24">
       <Card>
         <CardHeader>
-          <CardTitle>{region} Influencers</CardTitle>
+          <CardTitle>
+            Mumbai Based Influencers recommended for your product
+          </CardTitle>
         </CardHeader>
         <CardContent>
           {influencers.length === 0 ? (
-            <p className="py-4 text-center">
-              No influencers found for {region}
-            </p>
+            <p className="py-4 text-center">No influencers found for Mumbai</p>
           ) : (
             <div className="rounded-md border">
               <Table>
