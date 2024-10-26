@@ -20,28 +20,28 @@ export default function KanbanViewPage() {
         'https://images.mamaearth.in/catalog/product/1/_/1_white_bg_32.jpg?format=auto&height=600'
     },
     {
-      name: 'Onion Shampoo and Oil Combo - 250ml + 250ml',
+      name: 'Onion Shampoo and Oil Combo',
       link: 'https://mamaearth.in/product/onion-shampoo-oil-combo',
       category: 'Hair Kit',
       image:
         'https://images.mamaearth.in/catalog/product/o/n/onion_shampoo_and_oil_combo_250li_white_bg.jpg?format=auto&height=600'
     },
     {
-      name: 'Vitamin C Foaming Face Wash with Vitamin C and Turmeric for Skin Illumination - 150ml',
+      name: 'Vitamin C Foaming Face Wash with Vitamin C & Turmeric',
       link: 'https://mamaearth.in/product/vitamin-c-foaming-face-wash-with-vitamin-c-turmeric-for-skin-illumination-150ml',
       category: 'Face Wash',
       image:
         'https://images.mamaearth.in/catalog/product/v/i/vitamin_c_foaming_face_wash_1.jpeg?format=auto&height=600'
     },
     {
-      name: 'Ubtan Face Scrub with Turmeric and Walnut for Tan Removal - 100g',
+      name: 'Ubtan Face Scrub with Turmeric & Walnut for Tan Removal',
       link: 'https://mamaearth.in/product/ubtan-scrub-for-face-with-turmeric-walnut-for-tan-removal-100g',
       category: 'Face Wash',
       image:
         'https://images.mamaearth.in/catalog/product/u/b/ubtan_face_scrub_1.jpg?format=auto&height=600'
     },
     {
-      name: 'Aloe Vera Gel with Pure Aloe Vera & Vitamin E for Skin and Hair - 300 ml (Pack of 2)',
+      name: 'Aloe Vera Gel with Pure Aloe Vera & Vitamin E for Skin and Hair',
       link: 'https://mamaearth.in/product/aloe-vera-gel-with-pure-aloe-vera-vitamin-e-for-skin-and-hair-300-ml-pack-of-2',
       category: 'Body Kit',
       image:
@@ -55,14 +55,14 @@ export default function KanbanViewPage() {
         'https://images.mamaearth.in/catalog/product/v/i/vit_c_face_mask.jpg?format=auto&height=600'
     },
     {
-      name: 'Onion Hair Oil for Hair Regrowth and Hair Fall Control - 250ml (Pack of 2)',
+      name: 'Onion Hair Oil for Hair Regrowth & Hair Fall Control',
       link: 'https://mamaearth.in/product/onion-hair-oil-for-hair-regrowth-hair-fall-control-with-redensyl-250ml-pack-of-2',
       category: 'Hair Oil',
       image:
         'https://images.mamaearth.in/catalog/product/f/o/fop_white_bg_22.jpg?format=auto&height=600'
     },
     {
-      name: 'Onion Shampoo for Hair Fall Control and Hair Growth with Onion & Plant Keratin - 650 ml',
+      name: 'Onion Shampoo for Hair Growth and Hair Fall Control with Onion Oil and Plant Keratin',
       link: 'https://mamaearth.in/product/onion-shampoo-for-hair-fall-control-and-hair-growth-with-onion-plant-keratin-650-ml',
       category: 'Hair Shampoo',
       image:
